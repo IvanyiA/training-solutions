@@ -8,6 +8,6 @@ public class DivByThree {
         System.out.println("Kérem adjon meg egy egész számot: ");
         int szam = scanner.nextInt();
 
-        System.out.println(szam % 3 == 0 ? "oszthtató hárommal" : "nem osztható hárommal");
+        System.out.println(szam % 3 == 0 ? "osztható hárommal" : "nem osztató hárommal");
     }
 }
