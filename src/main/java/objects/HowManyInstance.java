@@ -12,13 +12,7 @@ public class HowManyInstance {
         book4 = book5;
         book5 = new Book();
         book6 = null;
-
-        System.out.println(book1);
-        System.out.println(book2);
-        System.out.println(book3);
-        System.out.println(book4);
-        System.out.println(book5);
-        System.out.println(book6);
-        System.out.println(book7);
     }
+
 }
+
