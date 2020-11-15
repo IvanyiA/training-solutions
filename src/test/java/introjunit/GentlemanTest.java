@@ -14,4 +14,14 @@ public class GentlemanTest {
 
         assertEquals("Hello John Doe", üdvözlés);
     }
+
+    @Test
+    public void testbynullName() {
+        String name = null;
+
+        String üdvözlés = new Gentleman().sayHello(name);
+
+        assertEquals("Hello Anonymus", üdvözlés);
+    }
+
 }
