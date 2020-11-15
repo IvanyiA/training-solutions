@@ -1,47 +1,44 @@
 package introcontrol;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
 public class IntroControlMain {
+
     public static void main(String[] args) {
         IntroControl introControl = new IntroControl();
-        System.out.println(introControl.substractTenIfGreaterThanTen(11));
-        System.out.println(introControl.substractTenIfGreaterThanTen(9));
-        System.out.println(introControl.substractTenIfGreaterThanTen(10));
+        System.out.println(introControl.subtractTenIfGreaterThanTen(0));
+        System.out.println(introControl.subtractTenIfGreaterThanTen(10));
+        System.out.println(introControl.subtractTenIfGreaterThanTen(15));
 
-        System.out.println(introControl.describeNumber(10));
         System.out.println(introControl.describeNumber(0));
+        System.out.println(introControl.describeNumber(1));
 
         System.out.println(introControl.greetingToJoe("Joe"));
         System.out.println(introControl.greetingToJoe("Jane"));
 
-        System.out.println("jutalék:");
-        System.out.println(introControl.calculateBonus(10));
-        System.out.println(introControl.calculateBonus(5000000));
+        System.out.println("calculateBonus");
+        System.out.println(introControl.calculateBonus(0));
+        System.out.println(introControl.calculateBonus(100));
+        System.out.println(introControl.calculateBonus(1_000_000));
+        System.out.println(introControl.calculateBonus(1_000_090));
 
-        System.out.println("Mérőállás különbség: ");
-        System.out.println(introControl.calculateConsumption(9000, 400));
-        System.out.println(introControl.calculateConsumption(200, 600));
+        System.out.println("calculateMeterReadingsDifference");
+        System.out.println(introControl.calculateConsumption(10, 20));
+        System.out.println(introControl.calculateConsumption(9990, 10));
 
-        System.out.println("print numbers until");
-        introControl.printNumbers(5);
-        introControl.printNumbers(3);
+        System.out.println("printNumbers");
+        introControl.printNumbers(10);
+        System.out.println("printNumbersBetween");
+        introControl.printNumbersBetween(10, 20);
 
-        System.out.println("print numbers between");
-        introControl.printNumbersBetween(5,8);
-        introControl.printNumbersBetween(2,6);
+        System.out.println("printNumbersBetweenAnyDirection");
+        introControl.printNumbersBetweenAnyDirection(10, 20);
+        System.out.println("printNumbersBetweenAnyDirection - reverse");
+        introControl.printNumbersBetweenAnyDirection(20, 10);
 
-        System.out.println("print numbers between with direction");
-        introControl.printNumbersBetweenAnyDirection(1,10);
-        introControl.printNumbersBetweenAnyDirection(7,0);
-
-        System.out.println("print odds numbers");
-        introControl.printOddNumbers(8);
-        introControl.printOddNumbers(5);
-
-
+        System.out.println("printOddNumbers - 1");
+        introControl.printOddNumbers(1);
+        System.out.println("printOddNumbers - 10");
+        introControl.printOddNumbers(10);
+        System.out.println("printOddNumbers - 11");
+        introControl.printOddNumbers(11);
     }
-
 }
-
-
