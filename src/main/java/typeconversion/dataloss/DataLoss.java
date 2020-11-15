@@ -10,7 +10,7 @@ public class DataLoss {
             long converted = (long) (float) original;
             if (converted != original) {
                 System.out.println("Original: " + original + " in binary: " + Long.toBinaryString(original));
-                System.out.println("Converted: " + converted+" in binary"+Long.toBinaryString(converted));
+                System.out.println("Converted: " + converted + " in binary" + Long.toBinaryString(converted));
                 counter++;
             }
             original++;
