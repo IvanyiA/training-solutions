@@ -3,7 +3,7 @@ package intromethods.todo;
 public class Todo {
 
     private String caption;
-    private boolean finished;
+    private boolean elvégzett;
 
     public Todo(String caption) {
         this.caption = caption;
@@ -14,15 +14,15 @@ public class Todo {
     }
 
     public boolean isFinished() {
-        return finished;
+        return elvégzett;
     }
 
-    public void finish() {
-        finished = true;
+    public void elvégzett() {
+        elvégzett = true;
     }
 
     @Override
     public String toString() {
-        return caption + " (" + (finished ? "finished" : "not finished") + ") ";
+        return caption + " (" + (elvégzett ? "kész" : "nincs kész") + ") ";
     }
 }
