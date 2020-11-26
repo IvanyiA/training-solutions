@@ -5,16 +5,16 @@ public class ChangeLetter {
     public static final String VOWELS = "aeiou";
     public static final String REPLACE_CHAR = "*";
 
-    public String changeVowels(String target) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < target.length(); i++) {
-            String c = target.substring(i, i + 1);
-            if (VOWELS.contains(c)) {
-                builder.append(REPLACE_CHAR);
+    public String changeVowels(String temp) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < temp.length(); i++) {
+            String s = temp.substring(i, i + 1);
+            if (VOWELS.contains(s)) {
+                sb.append(REPLACE_CHAR);
             } else {
-                builder.append(c);
+                sb.append(s);
             }
         }
-        return builder.toString();
+        return sb.toString();
     }
 }
