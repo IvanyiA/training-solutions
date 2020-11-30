@@ -20,16 +20,6 @@ public class PrintFormatTest {
         assertEquals("Less objects then expected in format String!", ex.getMessage());
     }
 
-
-    @Test
-    public void testPrintFormattedTextWDouble() {
-        // Given
-        Double d = 561123.201;
-
-        //Then
-        assertEquals("Total is: 561 123,20 Ft", new PrintFormat().printFormattedText(d));
-    }
-
     @Test
     public void testPrintFormattedTextWIntString() {
         // Given
