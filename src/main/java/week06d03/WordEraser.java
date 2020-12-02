@@ -10,7 +10,7 @@ public class WordEraser {
         StringBuilder sb = new StringBuilder();
         for (String item : arr) {
             if (!item.equals(word)) {
-                sb.append(item).append(" ");
+                sb.append(item + " ");
             }
         }
         return sb.toString().trim();
@@ -23,7 +23,7 @@ public class WordEraser {
         while (scanner.hasNext()) {
             String s = scanner.next();
             if (!word.equals(s)) {
-                result.append(s).append(" ");
+                result.append(s + " ");
             }
         }
         return result.toString().trim();
