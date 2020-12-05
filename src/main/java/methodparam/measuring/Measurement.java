@@ -8,20 +8,19 @@ public class Measurement {
         this.values = values;
     }
 
-    public double findFirstIndexInLimit(int lower, int upper) {
+    public int findFirstIndexInLimit(int lower, int upper) {
         for (int j = 0; j < values.length; j++) {
-            if (lower < values[j] && values[j] > upper) {
+            if (lower < values[j] && values[j] < upper)
                 return j;
-            }
         }
         return -1;
     }
 
     public double minimum() {
         double min = values[0];
-        for (int j = 0; j < values.length; j++) {
+        for (int j = 1; j < values.length; j++) {
             if (values[j] < min) {
-                values[j] = min;
+                min = values[j];
             }
         }
         return min;
@@ -29,10 +28,11 @@ public class Measurement {
 
     public double maximum() {
         double max = values[0];
-        for (int j = 0; j < values.length; j++)
-            if (values[j] > max) {
-                values[j] = max;
-            }
+        for (int j = 1; j < values.length; j++) {
+            if (values[j] > max)
+                max = values[j];
+
+        }
         return max;
     }
 
