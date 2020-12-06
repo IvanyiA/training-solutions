@@ -1,5 +1,6 @@
 package week06d03;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,6 +28,19 @@ public class WordEraser {
             }
         }
         return result.toString().trim();
+    }
+
+    public String eraseWordWithList(String words, String word) {
+
+        List<String> filteredList = new ArrayList<>();
+        String[] wordsArray= words.split(" ");
+
+        for (String item: wordsArray){
+            if (!item.equals(word)){
+                filteredList.add(item);
+            }
+        }
+        return String.join(" ", filteredList);
     }
 
 }
