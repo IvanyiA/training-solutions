@@ -11,7 +11,7 @@ public class DigitSum {
             sum = sum + reminder;
             x = x / 10;
         }
-        return x+ sum;
+        return x + sum;
     }
 
 
