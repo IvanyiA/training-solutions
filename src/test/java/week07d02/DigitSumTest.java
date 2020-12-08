@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DigitSumTest {
 
-    private int x=123;
+    private int x;
 
     @Test
     public void sumOfDigitsTest(){
-        assertEquals(6, DigitSum.sumOfDigits(123));
+        assertEquals(11, DigitSum.sumOfDigits(623));
     }
 
 }
