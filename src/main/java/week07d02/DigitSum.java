@@ -1,4 +1,4 @@
-package week0702;
+package week07d02;
 
 public class DigitSum {
 
@@ -10,10 +10,9 @@ public class DigitSum {
             int reminder = x % 10;
             sum = sum + reminder;
             x = x / 10;
-
         }
         return x+ sum;
-
     }
+
 
 }
