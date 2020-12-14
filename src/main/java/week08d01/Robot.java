@@ -1,7 +1,5 @@
 package week08d01;
 
-import java.util.Locale;
-
 public class Robot {
 
     private Point position = new Point(0, 0);
