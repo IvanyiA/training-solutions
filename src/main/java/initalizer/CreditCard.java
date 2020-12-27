@@ -8,7 +8,6 @@ public class CreditCard {
     private static final List<Rate> ACTUAL_RATES = new ArrayList<>();
 
     private long balance;
-    private Currency currency;
 
     public CreditCard(long balance, Currency currency, List<Rate> upload) {
         ACTUAL_RATES.addAll(upload);
@@ -24,7 +23,7 @@ public class CreditCard {
     }
 
     public boolean payment(long amount, Currency currency) {
-        long value = Math.round((amount * getConversionRate(currency)));
+        long value = Math.round(amount * getConversionRate(currency));
         if (value <= balance) {
             balance -= value;
             return true;
@@ -44,5 +43,4 @@ public class CreditCard {
         }
         return 1.0;
     }
-
 }

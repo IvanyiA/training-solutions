@@ -1,3 +1,4 @@
+
 package initalizer;
 
 public class Rate {
@@ -5,7 +6,6 @@ public class Rate {
     private Currency currency;
 
     private double conversionFactor;
-
 
     public Rate(Currency currency, double conversionFactor) {
         this.currency = currency;
@@ -19,6 +19,4 @@ public class Rate {
     public double getConversionFactor() {
         return conversionFactor;
     }
-
-
 }
