@@ -5,7 +5,7 @@ public class FibCalculator {
     private static int[] FIB_NUMS = new int[1000];
 
     public static void main(String[] args) {
-        System.out.println(sumEvens(9));
+        System.out.println(sumEvens(4));
     }
 
     static long sumEvens(int bound) {
