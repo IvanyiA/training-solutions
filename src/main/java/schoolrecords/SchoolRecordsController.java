@@ -146,7 +146,6 @@ public class SchoolRecordsController {
         while (menuNumber != 11) {
             menuToConsole();
             System.out.println("Kérem adja meg a választott menü számát: ");
-            menuNumber = 2;
             menuNumber = Integer.parseInt(scanner.nextLine());
             executeMenu(menuNumber);
         }

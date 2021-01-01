@@ -30,7 +30,7 @@ public class Student {
         for (Mark mark : marks) {
             sum += mark.getMarkType().getValue();
         }
-        double average = 0;
+        double average;
         average = sum / marks.size();
         return Math.round(average * 100) / 100.0;
     }

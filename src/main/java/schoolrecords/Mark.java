@@ -15,10 +15,10 @@ public class Mark {
         this.tutor = tutor;
     }
 
-    public Mark(String markType, Subject subject, Tutor tutor) {
-        this.subject = subject;
-        this.tutor = tutor;
-    }
+//    public Mark(String markType, Subject subject, Tutor tutor) {
+//        this.subject = subject;
+//        this.tutor = tutor;
+//    }
 
     public MarkType getMarkType() {
         return markType;

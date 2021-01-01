@@ -7,7 +7,7 @@ import java.util.Random;
 public class ClassRecords {
 
     private String className;
-    private Random rnd = new Random();
+    private Random rnd;
     private List<Student> students = new ArrayList<>();
 
     public ClassRecords(String className, Random rnd) {
@@ -112,12 +112,12 @@ public class ClassRecords {
         for (Student student : students) {
             sb.append(student.getName()).append(", ");
         }
-        return sb.toString().substring(0, sb.lastIndexOf(","));
+        return sb.substring(0, sb.lastIndexOf(","));
     }
 
-    private boolean isEmpty(String str) {
-        return str == null || "".equals(str.trim());
-    }
+//    private boolean isEmpty(String str) {
+//        return str == null || "".equals(str.trim());
+//    }
 }
 
 

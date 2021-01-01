@@ -6,7 +6,7 @@ import java.util.List;
 public class Tutor {
 
     private String name;
-    private List<Subject> taughtSubjects = new ArrayList<>();
+    private List<Subject> taughtSubjects;
 
 
     public Tutor(String name, List<Subject> taughtSubjects) {
