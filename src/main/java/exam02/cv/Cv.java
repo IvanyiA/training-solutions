@@ -5,33 +5,48 @@ import java.util.List;
 
 public class Cv {
 
-    private final String name;
-    private final List<Skill> skills = new ArrayList<>();
+    private String personName;
+    private List<Skill> skills;
 
-    public Cv(String name) {
-        this.name = name;
+    public Cv(String personName, List<Skill> skills) {
+        this.personName = personName;
+        this.skills = skills;
     }
 
-    public String getName() {
-        return name;
+    public Cv(String personName) {
+        this.personName = personName;
+        skills = new ArrayList<>();
+    }
+
+    public void addSkills(String... skillsNameAndLevels) {
+
+        for (int i = 0; i < skillsNameAndLevels.length; i++) {
+            skills.add(new Skill(skillsNameAndLevels[i]));
+        }
+
+//        for (String skillsNameAndLevel : skillsNameAndLevels) {
+//            skills.add(new Skill(skillsNameAndLevel));
+//        }
+
+
+    }
+
+    public String getPersonName() {
+        return personName;
     }
 
     public List<Skill> getSkills() {
-        return new ArrayList<>(skills);
+        return skills;
     }
 
-    public Skill addSkills(){String...skills}
-
     public int findSkillLevelByName(String skillName) {
-        if (skills.isEmpty()) {
-            throw SkillNotFoundException();
-        }
+
         for (Skill skill : skills) {
-            if (skillName.equals(skill.getName())) {
+            if (skill.getSkillName().equals(skillName)) {
                 return skill.getLevel();
             }
         }
-        return -1;
+        throw new SkillNotFoundException();
     }
 
 
