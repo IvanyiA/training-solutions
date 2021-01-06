@@ -3,7 +3,7 @@ package exam02.cv;
 public class Skill {
 
     private final String skillName;
-    private int level;
+    private final int level;
 
     public Skill(String name, int level) {
         this.skillName = name;

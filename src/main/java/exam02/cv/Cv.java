@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Cv {
 
-    private String personName;
-    private List<Skill> skills;
+    private final String personName;
+    private final List<Skill> skills;
 
     public Cv(String personName, List<Skill> skills) {
         this.personName = personName;
