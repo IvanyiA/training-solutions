@@ -46,7 +46,7 @@ public class Cv {
                 return skill.getLevel();
             }
         }
-        throw new SkillNotFoundException();
+        throw new SkillNotFoundException("Skill not found: " + skillName);
     }
 
 
