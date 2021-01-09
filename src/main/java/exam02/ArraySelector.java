@@ -12,8 +12,12 @@ public class ArraySelector {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < numbers.length; i += 2) {
             sb.append(numbers[i]).append(", ");
+//            if (i != numbers.length - 1){
+//                sb.append(", ");
+//            }
         }
-        sb.delete(sb.length() - 2, sb.length());
+
+            sb.delete(sb.length() - 2, sb.length());
         sb.append("]");
         return sb.toString();
     }
