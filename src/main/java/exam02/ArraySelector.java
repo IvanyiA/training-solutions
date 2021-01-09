@@ -10,14 +10,26 @@ public class ArraySelector {
         }
 
         StringBuilder sb = new StringBuilder("[");
+//        boolean first = true;
         for (int i = 0; i < numbers.length; i += 2) {
             sb.append(numbers[i]).append(", ");
+
+//            if (!first) {
+//                sb.append(", ");
+//            } else (first = false);
+//            sb.append(i);
+
+//            if (i != 0){
+//                sb.append(", ");
+//            }
+//            sb.append(i);
+//
 //            if (i != numbers.length - 1){
 //                sb.append(", ");
 //            }
         }
 
-            sb.delete(sb.length() - 2, sb.length());
+        sb.delete(sb.length() - 2, sb.length());
         sb.append("]");
         return sb.toString();
     }
