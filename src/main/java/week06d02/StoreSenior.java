@@ -1,7 +1,5 @@
 package week06d02;
 
-import week05d04.ProductSenior;
-
 import java.util.List;
 
 public class StoreSenior {
