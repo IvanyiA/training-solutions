@@ -14,22 +14,6 @@ public class ProductSeniorResult {
         this.other = other;
     }
 
-    public int getFrozen() {
-        return frozen;
-    }
-
-    public int getDairy() {
-        return dairy;
-    }
-
-    public int getBakedgoods() {
-        return bakedgoods;
-    }
-
-    public int getOther() {
-        return other;
-    }
-
     @Override
     public String toString() {
         return String.format("Fagyasztott áru: %d db. Tejtermék: %d db. Pékáru %d db. Egyéb: %d db.",frozen, dairy, bakedgoods, other);
