@@ -2,9 +2,9 @@ package week06d02;
 
 public class Product {
 
-    private String name;
-    private Category category;
-    private int price;
+    private final String name;
+    private final Category category;
+    private final int price;
 
     public Product(String name, Category category, int price) {
         this.name = name;
