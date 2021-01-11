@@ -28,6 +28,7 @@ public class DivisorFinder {
         String number = Integer.toString(n);
         for (int i = 0; i < number.length(); i++) {
             int digit = Integer.parseInt(number.substring(i, i + 1));
+//            int digit = Integer.parseInt(Character.toString(number.charAt(i)));
             if (digit > 0) {
                 int z = n % digit;
                 if (z == 0) {
