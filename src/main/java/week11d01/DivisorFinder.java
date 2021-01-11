@@ -37,5 +37,18 @@ public class DivisorFinder {
         }
         return sum;
     }
+
+    public int findDivisors3(int n) {
+        int counter = 0;
+        int number = Math.abs(n);
+        while (number > 0) {
+            if ((number % 10 != 0) && (n % (number % 10) == 0)) {
+                counter++;
+            }
+            number /= 10;
+        }
+        return counter;
+    }
+
 }
 
