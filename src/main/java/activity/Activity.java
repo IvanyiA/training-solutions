@@ -6,4 +6,8 @@ public interface Activity {
 
     ActivityType getType();
 
+//    default boolean hasTrack() {
+//        return false;
+//    }
+
 }

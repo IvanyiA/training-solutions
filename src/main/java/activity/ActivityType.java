@@ -2,6 +2,15 @@ package activity;
 
 public enum ActivityType {
 
-    BIKING, HIKING, RUNNING, BASKETBALL
+    BIKING(true), HIKING(true), RUNNING(true), BASKETBALL(false);
 
+    private final boolean hasTrack;
+
+    ActivityType(boolean hasTrack) {
+        this.hasTrack = hasTrack;
+    }
+
+    public boolean hasTrack() {
+        return hasTrack;
+    }
 }

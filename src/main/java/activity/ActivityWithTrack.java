@@ -19,4 +19,9 @@ public class ActivityWithTrack implements Activity {
     public ActivityType getType() {
         return this.activityType;
     }
+
+//    @Override
+//    public boolean hasTrack() {
+//        return true;
+//    }
 }

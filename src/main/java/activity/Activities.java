@@ -14,11 +14,12 @@ public class Activities {
     public int numberOfTrackActivities() {
         int counter = 0;
         for (Activity activity : activities) {
-            if (activity.getClass() == ActivityWithTrack.class) {
+//            if (activity.getClass() == ActivityWithTrack.class) {
+//            if (activity instanceOf ActivityWithTrack) {
+            if (activity.getType().hasTrack()) {
                 counter++;
             }
         }
-
         return counter;
     }
 
@@ -50,4 +51,18 @@ public class Activities {
         }
         return reports;
     }
+
+//    public List<Report> distancesByTypes() {
+//        List<Report> reports = new ArrayList<>();
+//        int[] sum = new int[ActivityType.values().length];
+//        for (Activity activity : activities) {
+//            sum[activity.getType().ordinal()] += activity.getDistance();
+//        }
+//
+//        for (ActivityType activityType : ActivityType.values()) {
+//            reports.add(new Report(activityType, sum[activityType.ordinal()]));
+//        }
+//        return reports;
+//    }
+
 }
