@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class GradeRounder {
 
     public static void main(String[] args) {
-        int[] result = new GradeRounder().roundGrades(new int[]{34, 81, 84});
+        int[] result = new GradeRounder().roundGrades(new int[]{34, 81, 86});
         System.out.println(Arrays.toString(result));
     }
 
