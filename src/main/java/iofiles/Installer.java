@@ -15,7 +15,7 @@ public class Installer {
         Path target = Path.of(targetDirectory);
 
         if (!Files.exists(target) || !Files.isDirectory(target)) {
-            throw new IllegalArgumentException("The given directory doesn't exsist");
+            throw new IllegalArgumentException("The given directory doesn't exist");
         }
         try (BufferedReader bufferedReader = new BufferedReader
                 (new InputStreamReader
