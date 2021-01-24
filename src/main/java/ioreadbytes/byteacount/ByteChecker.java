@@ -16,11 +16,12 @@ public class ByteChecker {
         try (InputStream inputStream = Files.newInputStream(path)) {
             byte[] buffer = new byte[1000];
 
-            int size = 0;
+            int size;
             while ((size = inputStream.read(buffer)) > 0) {
-
-                for (byte character : buffer) {
-                    if (character == 97){
+                //for (byte character : buffer) {} állítólag nem jó, mert ha az utolsó adagnál a puffer kapaciása nagyobb, mint a maradék beolvasandó, akkor feltölti a maradékkal puffert, de a puffer fennmaradó részében bennemarad az előző beolvasás egy része, habár nekem működött az eredeti verzió is.
+                for (int i = 0; i < size; i++) {
+//                    if (character == 97) {
+                        if (buffer[i] == 97) {
                         sumOfCharacterA++;
                     }
                 }
