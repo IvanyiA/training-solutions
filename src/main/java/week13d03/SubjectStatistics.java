@@ -2,6 +2,7 @@ package week13d03;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -62,6 +63,29 @@ public class SubjectStatistics {
     private void skipTwoLines(BufferedReader bufferedReader) throws IOException {
         bufferedReader.readLine();
         bufferedReader.readLine();
+    }
+
+    //paraméterként nem String, hanem a többcélú  Reader reader az elején, lehet pl. getResourceAsStream a tesztben.
+    public int getNumber(Reader reader, String teacherName) {
+        try (BufferedReader bufferedReader = new BufferedReader(reader)) {
+            return count(bufferedReader, teacherName);
+        } catch (IOException e) {
+            throw new IllegalStateException("Cannot read file.");
+        }
+    }
+
+    private int count(BufferedReader bufferedReader, String teacherName) throws IOException {
+
+        int sum = 0;
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            skipTwoLines(bufferedReader);
+            int number = Integer.parseInt(bufferedReader.readLine());
+            if (line.equals(teacherName)) {
+                sum += number;
+            }
+        }
+        return sum;
     }
 
 }
