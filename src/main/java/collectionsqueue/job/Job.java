@@ -2,9 +2,9 @@ package collectionsqueue.job;
 
 public class Job implements Comparable<Job> {
 
-    public final int priority;
-    public final String jobDescription;
-    public final boolean urgent;
+    private final int priority;
+    private final String jobDescription;
+    private final boolean urgent;
 
     public Job(int priority, String jobDescription) {
         this.priority = priority;
