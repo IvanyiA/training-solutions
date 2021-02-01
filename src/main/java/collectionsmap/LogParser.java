@@ -18,7 +18,7 @@ public class LogParser {
 
         try (Scanner scanner = new Scanner(log)) {
 
-            Map<String, List<Entry>> emptyElements = new HashMap<>();
+            Map<String, List<Entry>> entriesByIpAddress = new HashMap<>();
 
             while (scanner.hasNext()) {
                 String line = scanner.next();
@@ -28,9 +28,9 @@ public class LogParser {
 
                 Entry entry = new Entry(data[POSITION_OF_IP], parsedDate, data[POSITION_OF_LOGIN]);
 
-                fillEntryToMap(emptyElements, entry);
+                fillEntryToMap(entriesByIpAddress, entry);
             }
-            return emptyElements;
+            return entriesByIpAddress;
         }
 
     }
@@ -43,11 +43,11 @@ public class LogParser {
         }
     }
 
-    private void fillEntryToMap(Map<String, List<Entry>> emptyElements, Entry entry) {
-        if (!emptyElements.containsKey(entry.getIpAddress())) {
-            emptyElements.put(entry.getIpAddress(), new ArrayList<>());
+    private void fillEntryToMap(Map<String, List<Entry>> entriesByIpAddress, Entry entry) {
+        if (!entriesByIpAddress.containsKey(entry.getIpAddress())) {
+            entriesByIpAddress.put(entry.getIpAddress(), new ArrayList<>());
         }
-        emptyElements.get(entry.getIpAddress()).add(entry);
+        entriesByIpAddress.get(entry.getIpAddress()).add(entry);
     }
 
     private void invalidInputLine(String[] lineElements) {
