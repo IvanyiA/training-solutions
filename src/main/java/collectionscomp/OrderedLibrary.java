@@ -5,7 +5,7 @@ import java.util.*;
 
 public class OrderedLibrary {
 
-    List<Book> libraryBooks = new LinkedList<>();
+    List<Book> libraryBooks;
 
     public OrderedLibrary(List<Book> libraryBooks) {
         this.libraryBooks = libraryBooks;
