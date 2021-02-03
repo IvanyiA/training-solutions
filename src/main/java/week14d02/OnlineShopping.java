@@ -2,6 +2,7 @@ package week14d02;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -11,8 +12,9 @@ public class OnlineShopping {
     private Map<String, List<String>> shoppingList = new LinkedHashMap<>();
 
     public void readFile(Path path) {
-        try (BufferedReader bufferedReader = Files.newBufferedReader(path)) {
-            String line;
+        try (BufferedReader bufferedReader = Files.newBufferedReader(path))
+//        (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(week14d02.OnlineShopping.class.getResourceAsStream("orderedItems.txt"))
+        { String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(" ");
                 String[] products = parts[1].split(",");
@@ -69,7 +71,7 @@ public class OnlineShopping {
 
     public static void main(String[] args) {
         OnlineShopping onlineShopping = new OnlineShopping();
-        onlineShopping.readFile(Path.of("src/main/resources/shopping.txt"));
+        onlineShopping.readFile(Path.of("src/main/resources/orderedItems.txt"));
 
         List<String> result = onlineShopping.getProductsById("A312");
         System.out.println(result);
@@ -77,13 +79,13 @@ public class OnlineShopping {
         List<String> resultReverse = onlineShopping.getProductsReversedById("A312");
         System.out.println(resultReverse);
 
-        int resultCount=onlineShopping.getNUmberOfProductSold("tomato");
+        int resultCount = onlineShopping.getNUmberOfProductSold("tomato");
         System.out.println(resultCount);
 
         int sizeList = onlineShopping.getNumberOfProductsById("A312");
         System.out.println(sizeList);
 
-        Map<String, Integer> resultMap= onlineShopping.shoppingListStatistics();
+        Map<String, Integer> resultMap = onlineShopping.shoppingListStatistics();
         System.out.println(resultMap);
 
     }

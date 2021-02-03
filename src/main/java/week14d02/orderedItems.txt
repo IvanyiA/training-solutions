@@ -4,6 +4,6 @@ B3402 meet,soda,cola,bbq_sauce
 B341 pasta,passata,basil,cheese
 A10 corn,hot_dog,rolls
 CM231 beer,chips
-C123 pepper,salt,rosmary,pizza_dough,passata,oregano
-W34111 pasta,sugar,rosmary,cheese,meet,carrot,potato,tomato
+C123 pepper,salt,rosemary,pizza_dough,passata,oregano
+W34111 pasta,sugar,rosemary,cheese,meet,carrot,potato,tomato
 K8921 wine,soda

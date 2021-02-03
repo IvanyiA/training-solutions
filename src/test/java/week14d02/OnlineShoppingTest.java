@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class OnlineShoppingTest {
 
     OnlineShopping onlineShopping = new OnlineShopping();
-    Path file = Path.of("src/main/resources/shopping.txt");
+    Path file = Path.of("src/main/java/week14d02/orderedItems.txt");
 
     @BeforeEach
     void setUp() {
@@ -33,7 +33,7 @@ class OnlineShoppingTest {
 
     @Test
     void getNUmberOfProductSold() {
-        int resultCount = onlineShopping.getNUmberOfProductSold("rosmary");
+        int resultCount = onlineShopping.getNUmberOfProductSold("rosemary");
         assertEquals(2, resultCount);
     }
 
@@ -48,7 +48,7 @@ class OnlineShoppingTest {
     void shoppingListStatistics() {
 
         Map<String, Integer> resultMap = onlineShopping.shoppingListStatistics();
-        assertEquals(2, resultMap.get("rosmary").intValue());
+        assertEquals(2, resultMap.get("rosemary").intValue());
 
     }
 }
