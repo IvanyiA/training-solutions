@@ -23,7 +23,7 @@ public class BookArraySearch {
         return bookArray[index];
     }
 
-    private boolean isEmpty(String str) {
-        return str == null || "".equals(str.trim());
+    private boolean isEmpty(String string) {
+        return string == null || "".equals(string.trim());
     }
 }
