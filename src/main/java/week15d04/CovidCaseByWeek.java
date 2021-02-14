@@ -3,31 +3,31 @@ package week15d04;
 public class CovidCaseByWeek implements Comparable<CovidCaseByWeek> {
 
     private String week;
-    private int cases;
+    private int rawCases;
 
-    public CovidCaseByWeek(String week, int cases) {
+    public CovidCaseByWeek(String week, int rawCases) {
         this.week = week;
-        this.cases = cases;
+        this.rawCases = rawCases;
     }
 
     public String getWeek() {
         return week;
     }
 
-    public int getCases() {
-        return cases;
+    public int getRawCases() {
+        return rawCases;
     }
 
     @Override
     public String toString() {
         return "CovidCaseByWeek{" +
                 "week='" + week + '\'' +
-                ", cases=" + cases +
+                ", cases=" + rawCases +
                 '}';
     }
 
     @Override
     public int compareTo(CovidCaseByWeek o) {
-        return o.cases - this.cases;
+        return o.rawCases - this.rawCases;
     }
 }
