@@ -7,18 +7,19 @@ import java.util.Arrays;
 public class Histogram {
 
     public static final char NEW_CHAR = '*';
+    public static final String LINE_BREAK = "\n";
 
 
-    public String createHistogram(BufferedReader reader) {
+    public String createHistogram(BufferedReader reader) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         String line;
-        try {
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(changeNumberIn(line)).append("\n");
+        while ((line = reader.readLine()) != null) {
+            int numberOfStars = Integer.parseInt(line);
+//            stringBuilder.append(changeNumberIn(line)).append("\n");
+            for (int i = 0; i < numberOfStars; i++){
+                stringBuilder.append(NEW_CHAR);
             }
-        } catch (IOException e) {
-            throw new IllegalStateException("Cannot read file");
-
+            stringBuilder.append(LINE_BREAK);
         }
         return stringBuilder.toString();
     }
@@ -34,4 +35,6 @@ public class Histogram {
         int numberOfStars = Integer.parseInt(line);
         return "*".repeat(Math.max(0, numberOfStars));
     }
+
+
 }
