@@ -41,7 +41,7 @@ public class MailBox {
     }
 
     private void findByFrom(List<Mail> filtered, String key, String value, Mail mail) {
-        if (key.startsWith("from")) {
+        if ("from".equals(key)) {
             if (mail.getFrom().getName().equals(value) ||
                     mail.getFrom().getEmail().startsWith(value))
                 filtered.add(mail);
@@ -49,7 +49,7 @@ public class MailBox {
     }
 
     private void findByTo(List<Mail> filtered, String key, String value, Mail mail) {
-        if (key.startsWith("to")) {
+        if ("to".equals(key)) {
             for (Contact contact : mail.getTo())
                 if (contact.getName().contains(value))
                     filtered.add(mail);
