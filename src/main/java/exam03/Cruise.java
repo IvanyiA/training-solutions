@@ -1,5 +1,6 @@
 package exam03;
 
+import java.text.Collator;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -35,25 +36,23 @@ public class Cruise {
     }
 
     public void bookPassenger(Passenger passenger) {
-        if (passengers.size() == 5) {
+        if (boat.getMaxPassengers() <= passengers.size()) {
             throw new IllegalArgumentException("Too many books");
-        } else {
-            passengers.add(passenger);
         }
+        passengers.add(passenger);
     }
 
     public double getPriceForPassenger(Passenger passenger) {
-        return passenger.getCruiseClass().getMultiplicationFactor()
-                * getBasicPrice();
+        return basicPrice * passenger.getCruiseClass().getMultiplicationFactor();
     }
 
     public Passenger findPassengerByName(String name) {
         for (Passenger passenger : passengers) {
-            if (name.equals(passenger.getName())) {
+            if (passenger.getName().equals(name)) {
                 return passenger;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Not found with name: " + name);
     }
 
     public List<String> getPassengerNamesOrdered() {
@@ -61,31 +60,28 @@ public class Cruise {
         for (Passenger passenger : passengers) {
             nameOfPasssengers.add(passenger.getName());
         }
-        Collections.sort(nameOfPasssengers);
+        Collections.sort(nameOfPasssengers, Collator.getInstance(new Locale("hu", "HU")));  //Collator tud ékezeteseket rendezni
         return nameOfPasssengers;
     }
 
     public double sumAllBookingsCharged() {
         double sum = 0.0;
         for (Passenger passenger : passengers) {
-            double rate = passenger.getCruiseClass().getMultiplicationFactor();
-            sum += this.basicPrice * rate;
+            sum += getPriceForPassenger(passenger);
         }
         return sum;
     }
 
     public Map<CruiseClass, Integer> countPassengerByClass() {
-        Map<CruiseClass, Integer> map = new HashMap<>();
-
+        Map<CruiseClass, Integer> counts = new HashMap<>();
         for (Passenger passenger : passengers) {
-            if (map.containsKey(passenger.getCruiseClass())) {
-                int passengerNumber = map.get(passenger.getCruiseClass());
-                passengerNumber++;
-                map.replace(passenger.getCruiseClass(), passengerNumber);
+            if (!counts.containsKey(passenger.getCruiseClass())) {
+                counts.put(passenger.getCruiseClass(), 1);
             } else {
-                map.put(passenger.getCruiseClass(), 1);
+                counts.put(passenger.getCruiseClass(), counts.get(passenger.getCruiseClass()) + 1);
             }
         }
-        return map;
+        return counts;
+
     }
 }
