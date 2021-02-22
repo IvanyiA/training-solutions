@@ -50,8 +50,9 @@ public class MailBox {
 
     private void findByTo(List<Mail> filtered, String key, String value, Mail mail) {
         if (key.startsWith("to")) {
-            if (mail.getTo().contains(value))
-                filtered.add(mail);
+            for (Contact contact : mail.getTo())
+                if (contact.getName().contains(value))
+                    filtered.add(mail);
         }
     }
 
