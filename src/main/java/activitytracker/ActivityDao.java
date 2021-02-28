@@ -84,6 +84,14 @@ public class ActivityDao {
 //        }
 //    }
 
+    public String createStatementForMoreInsert(int numberOfElements) {
+        StringBuilder stringBuilder = new StringBuilder("insert into activities(start_time,activity_desc, activity_type) values ");
+        for (int i = 0; i < numberOfElements; i++) {
+            stringBuilder.append("(?,?,?");
+        }
+        return stringBuilder.toString();
+    }
+
     private long executeAndGetGeneratedKey(PreparedStatement statement) {
         try (
                 ResultSet resultSet = statement.getGeneratedKeys()

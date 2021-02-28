@@ -49,10 +49,12 @@ class ActivityDaoTest {
     @Test
     public void insertactivityTest() {
 
-        Activity activity = activityDao.insertactivity(new Activity(
-                0L, LocalDateTime.now(), "Activity", ActivityType.HIKING));
-
+        Activity activity = new Activity(0L, LocalDateTime.now(), "Activity", ActivityType.HIKING);
         System.out.println(activity);
+
+        Activity result = activityDao.insertactivity(activity);
+
+        assertEquals(activity.getDesc(), activityDao.findById(result.getId()).getDesc());
 
     }
 
