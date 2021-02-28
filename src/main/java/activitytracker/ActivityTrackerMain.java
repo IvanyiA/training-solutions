@@ -3,7 +3,6 @@ package activitytracker;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import javax.sql.DataSource;
-import java.awt.*;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class ActivityTrackerMain {
     public List<Activity> selectAllActivities(DataSource dataSource) {
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement("select * from activities");
+             PreparedStatement statement = connection.prepareStatement("select * from activities")
         ) {
             return selectActivityByPreparedStatement(statement);
 
