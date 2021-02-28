@@ -2,6 +2,7 @@ package activitytracker;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +14,76 @@ public class ActivityDao {
         this.dataSource = dataSource;
     }
 
-    public void insertactivity(Activity activity) {
+    public Activity insertactivity(Activity activity) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement =
-                     connection.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values(?,?,?)")
+                     connection.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values(?,?,?)",
+                             Statement.RETURN_GENERATED_KEYS)
         ) {
             statement.setTimestamp(1, Timestamp.valueOf(activity.getStartTime()));
             statement.setString(2, activity.getDesc());
             statement.setString(3, activity.getType().toString());
             statement.executeUpdate();
+            long id = executeAndGetGeneratedKey(statement);
+            return new Activity(
+                    id, activity.getStartTime(), activity.getDesc(), activity.getType());
 
         } catch (SQLException se) {
             throw new IllegalArgumentException("Cannot insert", se);
+        }
+    }
+
+//    public List<Activity> insertactivity(List<Activity> activities) {
+//        List<Activity> result = new ArrayList<>();
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement(
+//                     "INSERT INTO activities(start_time,activity_desc, activity_type) VALUES" + "(?,?,?),".repeat(activities.size())) //a végéről sajnos leh kell törölni az utolsó vesszőt, és emiatt nem működik
+//        ) {
+//            int i = 1;
+//            for (Activity activity : activities) {
+//                preparedStatement.setTimestamp(i++, Timestamp.valueOf(activity.getStartTime()));
+//                preparedStatement.setString(i++, activity.getDesc());
+//                preparedStatement.setString(i++, activity.getType().toString());
+//            }
+//            preparedStatement.executeUpdate();
+//            List<Long> ids = getIdsByPreparedStatement(preparedStatement);
+//            for (int j = 0; j < activities.size(); j++) {
+//                Activity activity =activities.get(j);
+//                result.add(new Activity(ids.get(j), activity.getStartTime(), activity.getDesc(), activity.getType()));
+//            }
+//        } catch (SQLException se) {
+//            throw new IllegalArgumentException("Cannot insert", se);
+//        }
+//        return result;
+//    }
+//
+//    private List<Long> getIdsByPreparedStatement(PreparedStatement preparedStatement) {
+//        List<Long> result = new ArrayList<>();
+//        try (ResultSet resultSet=preparedStatement.getGeneratedKeys()) {
+//            while (resultSet.next()){
+//                result.add(resultSet.getLong("id"));
+//            }
+//            return result;
+//        } catch (SQLException se){
+//            throw new IllegalArgumentException("Insertion failed", se);
+//        }
+//    }
+
+    private long executeAndGetGeneratedKey(PreparedStatement statement) {
+        try (
+                ResultSet resultSet = statement.getGeneratedKeys()
+        ) {
+//            while (resultSet.next()){
+//                new Activity(resultSet.getLong(1), resultSet.getString(2),...)
+//            }
+
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            } else {
+                throw new SQLException("No key was generated");
+            }
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Insertion failed", se);
         }
     }
 
@@ -83,8 +142,7 @@ public class ActivityDao {
         ) {
             statement.setString(1, type.toString());
             return selectActivityByPreparedStatement(statement);
-        }
-        catch (SQLException se) {
+        } catch (SQLException se) {
             throw new IllegalStateException("Cannot connect", se);
         }
     }
