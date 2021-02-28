@@ -2,6 +2,7 @@ package activitytracker;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,20 @@ public class ActivityDao {
 
         } catch (SQLException se) {
             throw new IllegalArgumentException("Cannot insert", se);
+        }
+    }
+
+    public List<Activity> activitiesBeforeDate(LocalDate date) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "select * from activities where start_time < ?")
+        ) {
+            LocalDateTime actualDate = date.atTime(0, 0);   //LocalDate-ből LocalDateTime-ot csinálunk
+            statement.setTimestamp(1, Timestamp.valueOf(actualDate));
+            return selectActivityByPreparedStatement(statement);
+
+        } catch (SQLException se) {
+            throw new IllegalStateException("Cannot connect", se);
         }
     }
 
