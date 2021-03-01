@@ -34,6 +34,41 @@ public class ActivityDao {
         }
     }
 
+    public List<Activity> insertactivities(List<Activity> activities) {
+        List<Activity> result = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection()) {
+
+            connection.setAutoCommit(false);
+
+            try (PreparedStatement statement =
+                         connection.prepareStatement(
+                                 "insert into activities(start_time, activity_desc, activity_type) values(?,?,?)",
+                                 Statement.RETURN_GENERATED_KEYS)) {
+                for (Activity activity : activities) {
+                    if (activity.getDesc() == null) {
+                        throw new IllegalArgumentException("Description cannot be null");
+                    }
+                    statement.setTimestamp(1, Timestamp.valueOf(activity.getStartTime()));
+                    statement.setString(2, activity.getDesc());
+                    statement.setString(3, activity.getType().toString());
+                    statement.executeUpdate();          //ideiglenes tárban vannak az adatok
+                    long id = executeAndGetGeneratedKey(statement);
+                    result.add(new Activity(
+                            id, activity.getStartTime(), activity.getDesc(), activity.getType()));
+                }
+                connection.commit();
+            } catch (Exception e) {
+                connection.rollback();          //belső catch-be kell rakni, mert ott van tranzakció
+                throw new SQLException("Something went wrong, cannot insert", e);
+            }
+        } catch (
+                SQLException se) {
+            throw new IllegalArgumentException("Cannot insert", se);
+        }
+        return result;
+    }
+
+
     public List<Activity> activitiesBeforeDate(LocalDate date) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(

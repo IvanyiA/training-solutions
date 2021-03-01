@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -63,4 +64,17 @@ class ActivityDaoTest {
         assertEquals(2, activityDao.activitiesBeforeDate(LocalDate.of(2021, 2, 12)).size());
 
     }
+
+    @Test
+    public void insertactivitiesTest() {
+        activityDao.insertactivities(List.of(
+                new Activity(0L, LocalDateTime.now(), "Activity", ActivityType.HIKING),
+                new Activity(0L, LocalDateTime.now(), "Activity", ActivityType.BIKING)
+        ));
+
+        System.out.println(activityDao.selectAllActivities());
+
+    }
+
+
 }
