@@ -36,6 +36,21 @@ public class TodoList {
         return mostImportantTodos;
     }
 
+    public List<String> getMostImportantTodosText2() {
+        int maxPriority = 5;
+        List<String> texts = new ArrayList<>();
+        for (Todo todo : todos) {
+            if (maxPriority > todo.getPriority()) {
+                maxPriority = todo.getPriority();
+                texts.clear();
+                texts.add(todo.getText());
+            } else if (maxPriority == todo.getPriority()) {
+                texts.add(todo.getText());
+            }
+        }
+        return texts;
+    }
+
     public void deleteCompleted() {
         Iterator<Todo> todoIterator = todos.iterator();
         while (todoIterator.hasNext()) {
@@ -44,6 +59,20 @@ public class TodoList {
                 todoIterator.remove();
             }
         }
+    }
+
+    public void deleteCompleted2() {
+        List<Todo> toRemove = new ArrayList<>();
+        for (Todo todo : todos) {
+            if (todo.getState() == State.COMPLETED) {
+                toRemove.add(todo);
+            }
+        }
+        todos.removeAll(toRemove);
+    }
+
+    public void deleteCompleted3() {
+        todos.removeIf(t -> t.getState() == State.COMPLETED);
     }
 
 }
