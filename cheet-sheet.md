@@ -1,3 +1,24 @@
+# Beállítások a `pom.xml`-ben
+
+Beállítja, hogy a forrásfájlok karakterkódolása `UTF-8` legyen,
+és 15-ös Javat használjon.
+
+```xml
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>15</maven.compiler.source>
+    <maven.compiler.target>15</maven.compiler.target>
+</properties>
+```
+
+# A `.gitignore` fájl
+
+```plain
+target
+.idea
+*.iml
+```
+
 # Main
 
 ```java
@@ -160,7 +181,7 @@ for (String name: names) {
 # Tömbök
 
 Lehetőleg kerüljük, helyette használjunk listát!
-Néhány helyen elkerülhetetlen, pl. varargs, 
+Néhány helyen elkerülhetetlen, pl. varargs,
 `split()` vagy ha a feladat így kéri.
 
 ```java
@@ -247,12 +268,24 @@ public enum Coin {
 ## Függőségek
 
 ```xml
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-engine</artifactId>
-    <version>5.7.1</version>
-    <scope>test</scope>
-</dependency>
+<dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.7.1</version>
+        <scope>test</scope>
+    </dependency>
+
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.2</version>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 ## Teszt osztály
@@ -260,6 +293,7 @@ public enum Coin {
 ```java
 public class TestCalculator {
 
+    @Test
     void testAdd() {
         // Given
         Calculator calculator = new Calculator();
@@ -384,7 +418,7 @@ public List<String> getNames(List<Employee> employees) {
 ```java
 public class FileReader {
 
-    public List<String> readLines(BufferedReader reader) throws IOException {
+    public void readLines(BufferedReader reader) throws IOException {
         String line;
         while ((line = reader.readLine())  != null) {
             System.out.println(line);
@@ -416,7 +450,7 @@ try (BufferedReader reader = new BufferedReader(new InputStreamReader(FileReader
 ```java
 public class FileWriter {
 
-    public void writeLines(List<String> employees, BufferedWriter writer) {
+    public void writeLines(List<Employee> employees, BufferedWriter writer) {
         try {
             for (String employee : employees) {
                 writer.write(employee.getName() + "," + employee.getYearOfBirth());
@@ -427,8 +461,9 @@ public class FileWriter {
     }
 
     public static void main(String[] args) {
+        List<Employee> employees = List.of(new Employee("John Doe", 1970), new Employee("Jack Doe", 1980));
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of("data.csv"))) {
-            new FileWriter().writeLines(writer);
+            new FileWriter().writeLines(employees, writer);
         } catch (IOException ioe) {
             throw new IllegalStateException("Can not write file", ioe);
         }
@@ -655,4 +690,3 @@ private long executeAndGetGeneratedKey(PreparedStatement stmt) {
         throw new IllegalArgumentException("Error by insert", sqle);
     }
 }
-```
